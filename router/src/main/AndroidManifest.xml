@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.tubb.afrouter">
+
+    <application>
+        <meta-data android:name="com.tubb.afrouter.ERROR_ACTIVITY_CLASS_NAME" android:value="com.tubb.afrouter.internal.ErrorActivity"/>
+        <activity android:name=".internal.ErrorActivity"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="startActivity"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/startFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="startActivityForResult"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/backStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="back startActivity"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/actionStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="action start"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/verifyParams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="verify params"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/interceptor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="interceptor"
+        android:onClick="viewClick"/>
+
+    <Button
+        android:id="@+id/returnType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="return type"
+        android:onClick="viewClick"/>
+    <Button
+        android:id="@+id/activityOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="activity options"
+        android:onClick="viewClick"/>
+</LinearLayout>

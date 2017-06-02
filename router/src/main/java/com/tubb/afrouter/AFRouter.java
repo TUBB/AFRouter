@@ -1,0 +1,83 @@
+package com.tubb.afrouter;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+
+import com.tubb.afrouter.internal.ActivityWrapper;
+import com.tubb.afrouter.internal.ContextWrapper;
+import com.tubb.afrouter.internal.Fragment4Wrapper;
+import com.tubb.afrouter.internal.FragmentWrapper;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+public final class AFRouter {
+
+    private static AFRouter instance;
+
+    private AFRouter() {}
+
+    public static synchronized AFRouter getInstance() {
+        if (instance == null) {
+            instance = new AFRouter();
+        }
+        return instance;
+    }
+
+    public <T> T create(Class<T> service, Context sender) {
+        return create(service, sender, null);
+    }
+
+    public <T> T create(Class<T> service, Activity sender) {
+        return create(service, sender, null);
+    }
+
+    public <T> T create(Class<T> service, Fragment sender) {
+        return create(service, sender, null);
+    }
+
+    public <T> T create(Class<T> service, android.support.v4.app.Fragment sender) {
+        return create(service, sender, null);
+    }
+
+    public <T> T create(Class<T> service, Context sender, Interceptor interceptor) {
+        return create(service, new ContextWrapper(sender), interceptor);
+    }
+
+    public <T> T create(Class<T> service, Activity sender, Interceptor interceptor) {
+        return create(service, new ActivityWrapper(sender), interceptor);
+    }
+
+    public <T> T create(Class<T> service, Fragment sender, Interceptor interceptor) {
+        return create(service, new FragmentWrapper(sender), interceptor);
+    }
+
+    public <T> T create(Class<T> service, android.support.v4.app.Fragment sender, Interceptor interceptor) {
+        return create(service, new Fragment4Wrapper(sender), interceptor);
+    }
+
+    private <T> T create(final Class<T> service, final Wrapper wrapper, final Interceptor interceptor) {
+        Object proxyInstance = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
+                new InvocationHandler() {
+                    @Override
+                    public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
+                        wrapper.setMethod(method);
+                        wrapper.setMethodArgs(args);
+                        Class returnType = method.getReturnType();
+                        if (returnType == void.class) {
+                            if (interceptor == null || !interceptor.intercept(wrapper)) {
+                                wrapper.start();
+                            }
+                            return null;
+                        } else if (returnType == Wrapper.class) {
+                            return wrapper;
+                        } else {
+                            throw new RuntimeException("ethod return type only support 'void' or 'Wrapper'");
+                        }
+                    }
+                });
+        return (T)proxyInstance;
+    }
+}
