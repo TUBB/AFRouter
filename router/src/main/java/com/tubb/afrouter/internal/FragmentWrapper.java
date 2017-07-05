@@ -1,13 +1,16 @@
 package com.tubb.afrouter.internal;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
 
 import com.tubb.afrouter.Wrapper;
 
 import java.lang.reflect.Method;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class FragmentWrapper extends Wrapper<Fragment> {
 
     public FragmentWrapper(Fragment sender) {

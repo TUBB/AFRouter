@@ -77,7 +77,7 @@ public abstract class Wrapper<T> {
         return mIntent;
     }
 
-    protected void parseAnnotation() {
+    void parseAnnotation() {
         Annotation[] methodAnnotations = mMethod.getAnnotations();
         for (Annotation annotation : methodAnnotations) {
             if (annotation instanceof ActivityName) {
@@ -100,11 +100,11 @@ public abstract class Wrapper<T> {
         }
     }
 
-    public void setMethod(Method method) {
+    void setMethod(Method method) {
         mMethod = method;
     }
 
-    public void setMethodArgs(Object[] args) {
+    void setMethodArgs(Object[] args) {
         mMethodArgs = args;
     }
 

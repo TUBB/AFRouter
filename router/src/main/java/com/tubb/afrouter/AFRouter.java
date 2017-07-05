@@ -1,8 +1,10 @@
 package com.tubb.afrouter;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
 
 import com.tubb.afrouter.internal.ActivityWrapper;
 import com.tubb.afrouter.internal.ContextWrapper;
@@ -34,6 +36,7 @@ public final class AFRouter {
         return create(service, sender, null);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public <T> T create(Class<T> service, Fragment sender) {
         return create(service, sender, null);
     }
@@ -50,6 +53,7 @@ public final class AFRouter {
         return create(service, new ActivityWrapper(sender), interceptor);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public <T> T create(Class<T> service, Fragment sender, Interceptor interceptor) {
         return create(service, new FragmentWrapper(sender), interceptor);
     }
@@ -74,7 +78,7 @@ public final class AFRouter {
                         } else if (returnType == Wrapper.class) {
                             return wrapper;
                         } else {
-                            throw new RuntimeException("ethod return type only support 'void' or 'Wrapper'");
+                            throw new RuntimeException("method return type only support 'void' or 'Wrapper'");
                         }
                     }
                 });

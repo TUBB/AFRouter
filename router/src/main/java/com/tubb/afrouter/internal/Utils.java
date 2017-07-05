@@ -22,6 +22,12 @@ public final class Utils {
         return !packageManager.queryIntentActivities(intent, 0).isEmpty();
     }
 
+    /**
+     * get the meta data
+     * @param context
+     * @param name meta name
+     * @return meta data, maybe null
+     */
     public static String getMetaData(Context context, String name) {
         try {
             ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
@@ -29,7 +35,9 @@ public final class Utils {
             if (appInfo.metaData != null) {
                 return appInfo.metaData.getString(name);
             }
-        } catch (PackageManager.NameNotFoundException e) {}
+        } catch (PackageManager.NameNotFoundException e) {
+            // ignore
+        }
         return null;
     }
 }
