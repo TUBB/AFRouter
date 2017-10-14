@@ -87,7 +87,6 @@ public abstract class Wrapper<T> {
         Type[] types = mMethod.getGenericParameterTypes();
         Annotation[][] parameterAnnotationsArray = mMethod.getParameterAnnotations();
         for(int i = 0, len = types.length; i < len; i++) {
-            // key
             String key = null;
             Annotation[] parameterAnnotations = parameterAnnotationsArray[i];
             for(Annotation annotation : parameterAnnotations) {

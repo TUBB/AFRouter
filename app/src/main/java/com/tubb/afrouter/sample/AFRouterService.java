@@ -14,18 +14,37 @@ import java.util.ArrayList;
  */
 
 public interface AFRouterService {
-    @ActivityName("com.tubb.afrouter.sample.NormalActivity")
+    /**
+     * 以Activity类全名的方式来启动Activity
+     */
+    @ActivityName("com.tubb.afrouter.sample.NormalActivity") // 类全名
     void start();
+    /**
+     * 指定Action的方式来启动Activity
+     * @param action intent action
+     * @param reqCode startActivityForResult() request code
+     */
     void actionStart(@ParamKey("action") String action, @ParamKey("reqCode") int reqCode);
     @ActivityName("com.tubb.afrouter.sample.NormalActivity")
     void forResult(@ParamKey("reqCode") int reqCode);
     @ActivityName("com.tubb.afrouter.sample.BackStartActivity")
     void backStart();
+    /**
+     * 自己手动处理Activity的启动
+     * @return Intent Wrapper
+     */
     @ActivityName("com.tubb.afrouter.sample.NormalActivity")
     Wrapper returnTypeStart();
+
+    /**
+     * 携带options
+     * @param bundle 5.0 options
+     */
     @ActivityName("com.tubb.afrouter.sample.NormalActivity")
     void activityOptionsStart(@ParamKey("options") Bundle bundle);
-
+    /**
+     * 支持携带的参数类型
+     */
     @ActivityName("com.tubb.afrouter.sample.VerifyParamsActivity")
     void verifyParams(@ParamKey("strP") String strP, @ParamKey("strsP") String[] strsP,
                       @ParamKey("intP") int intP, @ParamKey("intsP") int[] intsP,

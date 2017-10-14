@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.tubb.afrouter.internal.ActivityWrapper;
 import com.tubb.afrouter.internal.ContextWrapper;
@@ -28,37 +30,36 @@ public final class AFRouter {
         return instance;
     }
 
-    public <T> T create(Class<T> service, Context sender) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Context sender) {
         return create(service, sender, null);
     }
 
-    public <T> T create(Class<T> service, Activity sender) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Activity sender) {
         return create(service, sender, null);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public <T> T create(Class<T> service, Fragment sender) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Fragment sender) {
         return create(service, sender, null);
     }
 
-    public <T> T create(Class<T> service, android.support.v4.app.Fragment sender) {
+    public <T> T create(@NonNull Class<T> service, @NonNull android.support.v4.app.Fragment sender) {
         return create(service, sender, null);
     }
 
-    public <T> T create(Class<T> service, Context sender, Interceptor interceptor) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Context sender, @Nullable Interceptor interceptor) {
         return create(service, new ContextWrapper(sender), interceptor);
     }
 
-    public <T> T create(Class<T> service, Activity sender, Interceptor interceptor) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Activity sender, @Nullable Interceptor interceptor) {
         return create(service, new ActivityWrapper(sender), interceptor);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public <T> T create(Class<T> service, Fragment sender, Interceptor interceptor) {
+    public <T> T create(@NonNull Class<T> service, @NonNull Fragment sender, @Nullable Interceptor interceptor) {
         return create(service, new FragmentWrapper(sender), interceptor);
     }
 
-    public <T> T create(Class<T> service, android.support.v4.app.Fragment sender, Interceptor interceptor) {
+    public <T> T create(@NonNull Class<T> service, @NonNull android.support.v4.app.Fragment sender, @Nullable Interceptor interceptor) {
         return create(service, new Fragment4Wrapper(sender), interceptor);
     }
 

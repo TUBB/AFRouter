@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int FOR_RESULT_CODE= 100;
+    private static final int FOR_RESULT_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.returnType:
                 Wrapper wrapper = afService.returnTypeStart();
+//                wrapper.addFlags();
+//                wrapper.setAction();
+//                wrapper.setClassName();
+//                // 真实的Intent
+//                wrapper.getIntent();
                 wrapper.start();
                 break;
             case R.id.activityOptions:
