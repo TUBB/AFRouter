@@ -10,8 +10,10 @@ AFRouter
  * 支持options（Android 5.0 启动Activity方式）
  * 支持Context、Activity和Fragment作为调用者（Activity.startActivity()、Context.startActivity()和Fragment.startActivity()）
  * 支持设置request code（startActivityForResult()）
- * 提供拦截器（Interceptor），交由自己处理
+ * 提供拦截器（Interceptor），全局过滤Activity
  * 支持安全启动Activity（未找到目标Activity时路由到默认的Activity）
+ * 可以得到Intent包装类Wrapper，然后可以自己作处理
+ * 支持Android 2.3及以上版本
 
 使用
 =====
@@ -90,7 +92,7 @@ afService.forResult(FOR_RESULT_CODE);
 ```
 
 ### 通过Wrapper类使用
-支持得到框架对Intent包装类Wrapper，然后由自己来处理
+得到框架对Intent包装类Wrapper，然后由自己来处理
 ```java
 Wrapper wrapper = afService.returnTypeStart();
 // wrapper.addFlags();
@@ -116,9 +118,9 @@ afService.backStart();
 
 ### 框架内置的几个参数
 ```xml
-"action"    Intent Action
-"reqCode"   startActivityForResult() request code
-"options"   startActivity(Intent intent, Bundle options)
+"action"    Intent Action   如果传了这个参数，`Intent.setAction()`将会被调用
+"reqCode"   startActivityForResult() request code   如果传了这个参数，最终调用的是`startActivityForResult()`
+"options"   startActivity(Intent intent, Bundle options) 如果传了这个参数，`startActivity(Intent intent, Bundle options)`或`startActivityForResult(Intent intent, Bundle options)`将被调用
 ```
 
 ### 配置默认Activity（找不到目标Activity时显示的Activity，避免APP崩溃）
