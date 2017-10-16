@@ -18,14 +18,14 @@ AFRouter
 使用
 =====
 
-添加依赖
-```
+### 添加依赖
+```groovy
 dependencies {
     api 'com.tubb.afrouter:afrouter:0.3.0'
 }
 ```
 
-#### 定义Router Service
+### 定义Router Service
 首先要定义`Router Service`，告诉框架如何来启动一个Activity，直接来看示例
 ```java
 public interface AFRouterService {
@@ -129,6 +129,11 @@ afService.backStart();
     tools:replace="android:value"
     android:name="com.tubb.afrouter.ERROR_ACTIVITY_CLASS_NAME"
     android:value="[默认Activity的类全名（包名.类名）]"/>
+```
+
+### 混淆配置
+``` groovy
+-keep class com.tubb.afrouter.annotations.** { *; }
 ```
 
 详细使用请参照Demo工程，强烈建议clone下来查看
