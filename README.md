@@ -21,7 +21,7 @@ AFRouter
 ### 添加依赖
 ```groovy
 dependencies {
-    api 'com.tubb.afrouter:afrouter:0.3.0'
+    api 'com.tubb.afrouter:afrouter:0.3.1'
 }
 ```
 
