@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.3.0"
+        versionCode 4
+        versionName "0.3.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -38,7 +38,7 @@ publish {
     userOrg = 'tubb'
     groupId = 'com.tubb.afrouter'
     artifactId = 'afrouter'
-    publishVersion = '0.3.0'
+    publishVersion = '0.3.1'
     desc = 'App moudles, Activity and Fragment router system'
     website = 'https://github.com/TUBB/AFRouter'
 }

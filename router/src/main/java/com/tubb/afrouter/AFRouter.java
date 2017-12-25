@@ -63,11 +63,15 @@ public final class AFRouter {
         return create(service, new Fragment4Wrapper(sender), interceptor);
     }
 
+    @SuppressWarnings("unchecked") // Single-interface proxy creation guarded by parameter safety.
     private <T> T create(final Class<T> service, final Wrapper wrapper, final Interceptor interceptor) {
         Object proxyInstance = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
                 new InvocationHandler() {
                     @Override
                     public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
+                        if (method.getDeclaringClass() == Object.class) { // filter Object method
+                            return method.invoke(this, args);
+                        }
                         wrapper.setMethod(method);
                         wrapper.setMethodArgs(args);
                         Class returnType = method.getReturnType();
@@ -83,6 +87,6 @@ public final class AFRouter {
                         }
                     }
                 });
-        return (T)proxyInstance;
+        return (T) proxyInstance;
     }
 }
